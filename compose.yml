@@ -1,0 +1,53 @@
+services:
+  pocketbase:
+    build:
+      context: ./pocketbase
+    volumes:
+      - ./pocketbase:/pb
+    env_file:
+      - .env
+    networks:
+      - app_network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8090/api/health"]
+      interval: 5s
+      timeout: 10s
+      retries: 10
+    
+  front:
+    build:
+      context: ./front
+    volumes:
+      - ./front:/app
+      - /app/node_modules
+      - /app/.next
+    env_file:
+      - .env
+    networks:
+      - app_network
+    depends_on:
+      pocketbase:
+          condition: service_healthy
+
+  caddy:
+    image: caddy
+    ports:
+      - 80:80
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      front:
+        condition: service_started
+      pocketbase:
+        condition: service_healthy
+    networks:
+      - app_network
+
+volumes:
+  caddy_data:
+  caddy_config:
+
+networks:
+  app_network:

@@ -2,6 +2,7 @@ services:
   pocketbase:
     build:
       context: ./pocketbase
+      target: dev
     volumes:
       - ./pocketbase:/pb
     env_file:

@@ -2,7 +2,7 @@ import { Diploma, Job, User } from '@/app/types';
 import PocketBase from 'pocketbase';
 
 export async function getStaticProps() {
-  const pb = new PocketBase(process.env.API_URL);
+  const pb = new PocketBase(process.env.API_URL ?? "http://localhost:8090");
 
   const diplomas = await pb.collection('diplomas').getFullList<Diploma>({
     sort: '-end',

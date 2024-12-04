@@ -20,11 +20,9 @@ RUN go mod tidy
 RUN CGO_ENABLED=0 go build
 
 
-FROM alpine:latest
-ENV POCKET_PORT=8090
-ENV POCKET_URL=0.0.0.0
+FROM base
 WORKDIR /app
 COPY --from=back /pb/pocketbase .
-COPY init.sql ./init.sql
+COPY pb_data pb_data
 EXPOSE ${POCKET_PORT}
 CMD ./pocketbase serve --http=${POCKET_URL}:${POCKET_PORT}

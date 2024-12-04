@@ -34,3 +34,9 @@ Le pipeline Github Action est configuré pour déployer automatiquement la versi
   * Création d'un artefact
 * Deploy
   * Utilisation de l'artefact pour déployer le site statique sur Github Pages
+
+
+
+https://nextjs.org/docs/pages/building-your-application/deploying#self-hosting
+https://github.com/nextjs/deploy-github-pages
+https://github.com/kevinganthy/pocketcv/new/main?filename=.github%2Fworkflows%2Fnextjs.yml&pages_workflow_template=pages%2Fnextjs

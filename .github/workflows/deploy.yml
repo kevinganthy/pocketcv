@@ -14,9 +14,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v3
-      
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
@@ -35,6 +32,9 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: front
     needs: pocketbase
     
     services:
@@ -42,39 +42,42 @@ jobs:
         image: kevinganthy/pocketcv:latest
         ports:
           - 8090:8090
-        options: >-
-          --health-cmd="curl -f http://localhost:8090/api/health || exit 1"
-          --health-interval=5s
-          --health-timeout=10s
-          --health-retries=10
           
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+          cache-dependency-path: "front"
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+        with:
+          static_site_generator: next
+
+      - name: Restore cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            front/.next/cache
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
+          restore-keys: |
+            ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
+
       - name: Install dependencies
-        run: |
-          cd front
-          npm install
+        run: npm ci
 
-      - name: Wait for PocketBase
-        run: |
-          until curl -s http://localhost:8090/api/health; do
-            echo "Waiting for PocketBase..."
-            sleep 5
-          done
-
-      - name: Build Frontend
-        run: |
-          cd front
-          npm run build
+      - name: Build with Next.js
+        run: npx --no-install next build
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-pages-artifact@v3
         with:
           path: front/out
-          compression-level: 1
-          if-no-files-found: error
 
   deploy:
     runs-on: ubuntu-latest
@@ -92,3 +95,5 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4.0.5
+        with:
+          artifact_name: github-pages

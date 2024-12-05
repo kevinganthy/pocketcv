@@ -1,5 +1,12 @@
-import { Diploma, Job, User } from '@/app/types';
+import User from '@/app/types/User';
+import Diploma from '@/app/types/Diploma';
+import Job from '@/app/types/Job';
+import { UserComp } from '@/components/User';
 import PocketBase from 'pocketbase';
+import { DiplomaComp } from '@/components/Diploma';
+import { JobComp } from '@/components/Job';
+import { PrintComp } from '@/components/Print';
+
 
 export async function getStaticProps() {
   const pb = new PocketBase(process.env.API_URL ?? "http://localhost:8090");
@@ -19,22 +26,27 @@ export async function getStaticProps() {
   }};
 }
 
+
 export default function Page({ diplomas, jobs, user }: { diplomas: Diploma[], jobs: Job[], user: User }) {
   return (
-    <>
-      <ul>
+    <div className='flex flex-col gap-8'>
+      <UserComp user={user} />
+
+      <aside>
         {diplomas.map((diploma) => (
-          <li key={diploma.id}>{diploma.title}</li>
+          <DiplomaComp key={diploma.id} diploma={diploma} />
         ))}
-      </ul>
+      </aside>
 
-      <ul>
+      <div dangerouslySetInnerHTML={{__html:user.description}}></div>
+
+      <PrintComp />
+
+      <main>
         {jobs.map((job) => (
-          <li key={job.id}>{job.title}</li>
+          <JobComp key={job.id} job={job} />
         ))}
-      </ul>
-
-      <pre>{JSON.stringify(user, null, 4)}</pre>
-    </>
+      </main>
+    </div>
   );
 }

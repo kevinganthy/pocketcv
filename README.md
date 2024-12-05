@@ -2,9 +2,11 @@
 
 :warning: Ce projet est utilisé comme CMS local et n'est pas compatible avec la collaboration au niveau de la base de données (SQLite).
 
-## Utilisation
+Version en ligne : [Pocket CV](https://kevinganthy.github.io/pocketcv/)
 
-> :warning: Penser à créer le fichier `.env` à partir du fichier `.env.example`
+## Utilisation locale
+
+> Penser à créer le fichier `.env` à partir du fichier `.env.example`
 
 Au choix :
 
@@ -35,8 +37,4 @@ Le pipeline Github Action est configuré pour déployer automatiquement la versi
 * Deploy
   * Utilisation de l'artefact pour déployer le site statique sur Github Pages
 
-
-
-https://nextjs.org/docs/pages/building-your-application/deploying#self-hosting
-https://github.com/nextjs/deploy-github-pages
-https://github.com/kevinganthy/pocketcv/new/main?filename=.github%2Fworkflows%2Fnextjs.yml&pages_workflow_template=pages%2Fnextjs
+Le résultat est visible sur <https://kevinganthy.github.io/pocketcv/>.

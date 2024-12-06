@@ -4,12 +4,12 @@ import Image from 'next/image';
 
 
 export const UserComp = ({ user }: { user: User}) => {
-    return <header className="flex gap-1">
+    return <header className="flex gap-4 bg-white p-4 rounded w-max">
         <div className="w-32">
-            <Image className="object-cover h-full" src="https://placehold.co/400" alt={`Photo de ${user.firstname}`} width={400} height={400} />
+            <Image className="object-cover h-full rounded" src="https://placehold.co/400" alt={`Photo de ${user.firstname}`} width={400} height={400} />
         </div>
 
-        <div className="flex flex-col gap-1 w-max">
+        <div className="flex flex-col gap-1">
             <h1 className="text-2xl">{user.firstname} {user.lastname}</h1>
             <p className="text-gray-500">{user.title}</p>
             <p className="text-gray-500">{user.subtitle}</p>

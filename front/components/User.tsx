@@ -4,9 +4,9 @@ import Image from 'next/image';
 
 
 export const UserComp = ({ user }: { user: User}) => {
-    return <header className="flex gap-4 bg-white p-4 rounded w-max">
+    return <header className="flex gap-5 bg-white p-5 rounded w-full print:w-max print:bg-slate-100 print:rotate-1 print:drop-shadow-lg">
         <div className="w-32">
-            <Image className="object-cover h-full rounded" src="https://placehold.co/400" alt={`Photo de ${user.firstname}`} width={400} height={400} />
+            <Image className="object-cover h-full rounded" src="kevin.webp" alt={`Photo de ${user.firstname}`} width={400} height={400} />
         </div>
 
         <div className="flex flex-col gap-1">
@@ -22,16 +22,16 @@ export const UserComp = ({ user }: { user: User}) => {
             <p className="text-gray-500">{user.location}</p>
         </div>
 
-        <nav>
-            <ul>
+        <nav className="ms-auto mt-1 print:hidden">
+            <ul className="flex flex-col gap-2">
                 <li>
                     <a href={user.linkedin} aria-label="Linked in">
-                        <i className="ph-fill ph-linkedin-logo"></i>
+                        <Image src="/stack/linkedin.svg" alt="Linked in" width={24} height={24} />
                     </a>
                 </li>
                 <li>
                     <a href={user.github} aria-label="Github">
-                        <i className="ph-fill ph-github-logo"></i>
+                    <Image src="/stack/github.svg" alt="Linked in" width={24} height={24} />
                     </a>
                 </li>
             </ul>

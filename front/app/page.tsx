@@ -21,20 +21,22 @@ export default async function Page() {
 
 
   return (
-    <div className='flex flex-col gap-8'>
-      <UserComp user={user} />
+    <div className='flex gap-8 p-8 mx-auto print:flex-col print:p-4'>
+      <div className='flex flex-col gap-8 w-full max-w-md print:flex-row print:max-w-full'>
+        <UserComp user={user} />
 
-      <aside className='flex flex-col gap-4 bg-white p-4 rounded w-max'>
-        {diplomas.map((diploma) => (
-          <DiplomaComp key={diploma.id} diploma={diploma} />
-        ))}
-      </aside>
+        <aside className='flex flex-col w-full gap-5 bg-white p-5 rounded print:w-max print:ms-auto print:p-0 print:my-auto'>
+          {diplomas.map((diploma) => (
+            <DiplomaComp key={diploma.id} diploma={diploma} />
+          ))}
+        </aside>
 
-      <div dangerouslySetInnerHTML={{__html:user.description}}></div>
+        <div className="bg-white p-5 rounded w-full print:hidden" dangerouslySetInnerHTML={{__html:user.description}}></div>
 
-      <PrintComp />
+        <PrintComp />
+      </div>
 
-      <main>
+      <main className='flex flex-col gap-5 bg-white p-5 rounded w-full print:p-0'>
         {jobs.map((job) => (
           <JobComp key={job.id} job={job} />
         ))}

@@ -23,12 +23,23 @@ jobs:
           username: kevinganthy
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Build and push
+      - name: Cache Docker layers
+        id: cache-docker
+        uses: actions/cache@v4
+        with:
+          path: /tmp/.buildx-cache
+          key: docker-build-${{ hashFiles('pocketbase/**/*.go') }}
+          restore-keys: |
+            docker-build-
+
+      - name: Build and push Docker image
         uses: docker/build-push-action@v6
         with:
           context: ./pocketbase/
           push: true
           tags: kevinganthy/pocketcv:latest
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to: type=local,dest=/tmp/.buildx-cache,mode=max
 
   build:
     runs-on: ubuntu-latest

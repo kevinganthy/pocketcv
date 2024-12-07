@@ -28,7 +28,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: /tmp/.buildx-cache
-          key: docker-build-${{ hashFiles('pocketbase/**/*.go') }}
+          key: docker-build-${{ hashFiles('pocketbase/**/*.go', 'pocketbase/*.db) }}
           restore-keys: |
             docker-build-
 

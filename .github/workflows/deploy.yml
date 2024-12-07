@@ -29,8 +29,6 @@ jobs:
         with:
           path: /tmp/.buildx-cache
           key: docker-build-${{ hashFiles('pocketbase/**/*.go', 'pocketbase/**/*.db') }}
-          restore-keys: |
-            docker-build-
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v6

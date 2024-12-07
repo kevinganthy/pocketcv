@@ -14,7 +14,7 @@ export const JobComp = ({ job }: { job: Job}) => {
         <header className="flex gap-2 items-center">
             <h2 className="me-auto text-xl font-medium">{job.title}</h2>
             {job.stack.map((tech) => (
-                <Image key={tech} src={`/stack/${tech}.svg`} alt={tech} width={24} height={24} />
+                <Image key={tech} src={`stack/${tech}.svg`} alt={tech} width={24} height={24} />
             ))}
             <p className="bg-amber-300 rounded-full w-max px-4 text-sm">{job.location}</p>
         </header>

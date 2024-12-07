@@ -26,12 +26,12 @@ export const UserComp = ({ user }: { user: User}) => {
             <ul className="flex flex-col gap-2">
                 <li>
                     <a href={user.linkedin} aria-label="Linked in">
-                        <Image src="/stack/linkedin.svg" alt="Linked in" width={24} height={24} />
+                        <Image src="stack/linkedin.svg" alt="Linked in" width={24} height={24} />
                     </a>
                 </li>
                 <li>
                     <a href={user.github} aria-label="Github">
-                    <Image src="/stack/github.svg" alt="Linked in" width={24} height={24} />
+                    <Image src="stack/github.svg" alt="Linked in" width={24} height={24} />
                     </a>
                 </li>
             </ul>

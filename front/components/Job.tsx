@@ -10,7 +10,7 @@ const formatDate = (date: string): string => {
 }
 
 export const JobComp = ({ job }: { job: Job}) => {
-    return <article className="job flex flex-col gap-4">
+    return <article className="job flex flex-col gap-2">
         <header className="flex gap-2 items-center">
             <h2 className="me-auto text-xl font-medium">{job.title}</h2>
             {job.stack.map((tech) => (
@@ -20,6 +20,7 @@ export const JobComp = ({ job }: { job: Job}) => {
         </header>
 
         <div className="flex gap-1 text-gray-500">
+            <p className="me-auto">{job.subtitle}</p>
             <time dateTime={formatDate(job.start)}>{formatDate(job.start)}</time>
             <span>à</span>
             <time dateTime={formatDate(job.end)}>{formatDate(job.end)}</time>

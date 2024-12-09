@@ -25,12 +25,12 @@ export const UserComp = ({ user }: { user: User}) => {
         <nav className="ms-auto mt-1 print:hidden">
             <ul className="flex flex-col gap-2">
                 <li>
-                    <a href={user.linkedin} aria-label="Linked in">
+                    <a href={user.linkedin} aria-label="Linked in" target='_blank'>
                         <Image src="stack/linkedin.svg" alt="Linked in" width={24} height={24} />
                     </a>
                 </li>
                 <li>
-                    <a href={user.github} aria-label="Github">
+                    <a href={user.github} aria-label="Github" target='_blank'>
                     <Image src="stack/github.svg" alt="Linked in" width={24} height={24} />
                     </a>
                 </li>

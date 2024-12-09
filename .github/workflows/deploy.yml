@@ -28,7 +28,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: /tmp/.buildx-cache
-          key: docker-build-${{ hashFiles('pocketbase/**/*.go', 'pocketbase/pb_data/data.db') }}
+          key: docker-build-${{ hashFiles('pocketbase/**/*.go') }}
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v6
@@ -49,6 +49,8 @@ jobs:
     services:
       pocketbase:
         image: kevinganthy/pocketcv:latest
+        volumes:
+          - ./pocketbase:/pb
         ports:
           - 8090:8090
           

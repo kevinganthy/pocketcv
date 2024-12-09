@@ -10,7 +10,7 @@ RUN apk update \
     && apk add --no-cache curl
 EXPOSE ${POCKET_PORT}
 RUN touch init.sql
-CMD ["go", "mod", "tidy", ";", "go", "run", "main.go", "serve", "--http=${POCKET_URL}:${POCKET_PORT}"]
+CMD sh -c "go mod tidy && go run main.go serve --http=${POCKET_URL}:${POCKET_PORT}"
 
 
 FROM base AS back

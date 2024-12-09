@@ -82,6 +82,13 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Wait for PocketBase
+        run: |
+          until curl -s http://localhost:8090/api/health; do
+            echo "Waiting for PocketBase..."
+            sleep 5
+          done
+
       - name: Build with Next.js
         run: npx --no-install next build
 

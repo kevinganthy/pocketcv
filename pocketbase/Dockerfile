@@ -31,4 +31,4 @@ WORKDIR /app
 COPY --from=back /pb/pocketbase .
 COPY pb_data pb_data
 EXPOSE ${POCKET_PORT}
-CMD ["./pocketbase", "serve", "--http=${POCKET_URL}:${POCKET_PORT}"]
+CMD ./pocketbase serve --http=${POCKET_URL}:${POCKET_PORT}

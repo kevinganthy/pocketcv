@@ -21,12 +21,12 @@ RUN go mod tidy \
 
 
 FROM base
-ARG USER=default
-RUN apk add --no-cache sudo \
-    && adduser -D "$USER" \
-    && echo "$USER ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/"$USER" \
-    && chmod 0440 /etc/sudoers.d/"$USER"
-USER $USER
+# ARG USER=default
+# RUN apk add --no-cache sudo \
+    # && adduser -D "$USER" \
+    # && echo "$USER ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/"$USER" \
+    # && chmod 0440 /etc/sudoers.d/"$USER"
+# USER $USER
 WORKDIR /app
 COPY --from=back /pb/pocketbase .
 COPY pb_data pb_data

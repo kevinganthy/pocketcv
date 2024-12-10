@@ -4,7 +4,7 @@ services:
       context: ./pocketbase
       target: dev
     volumes:
-      - ./pocketbase:/pb
+      - ./pocketbase:/app
     env_file:
       - .env
     networks:

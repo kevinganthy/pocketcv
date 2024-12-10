@@ -4,7 +4,7 @@ ENV POCKET_PORT=8090
 
 
 FROM base AS dev
-WORKDIR /app
+WORKDIR /pb
 RUN apk update \
     && apk upgrade \
     && apk add --no-cache curl
@@ -14,14 +14,14 @@ CMD sh -c "go mod tidy && go run main.go serve --http=${POCKET_URL}:${POCKET_POR
 
 
 FROM base AS back
-WORKDIR /app
+WORKDIR /pb
 COPY . .
 RUN go mod tidy \
     && CGO_ENABLED=0 go build
 
 
 FROM base
-WORKDIR /app
-COPY --from=back /app/pocketbase .
+WORKDIR /pb
+COPY --from=back /pb/pocketbase .
 EXPOSE ${POCKET_PORT}
 CMD ./pocketbase serve --http=${POCKET_URL}:${POCKET_PORT}

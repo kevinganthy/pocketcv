@@ -31,7 +31,7 @@ export const UserComp = ({ user }: { user: User}) => {
                 </li>
                 <li>
                     <a href={user.github} aria-label="Github" target='_blank'>
-                    <Image src="stack/github.svg" alt="Linked in" width={24} height={24} />
+                    <Image src="stack/github.svg" alt="Github" width={24} height={24} />
                     </a>
                 </li>
             </ul>

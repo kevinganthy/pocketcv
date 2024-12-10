@@ -3,7 +3,6 @@
 @tailwind utilities;
 
 main {
-    max-width: 21cm;
     .job {
         .description {
             p {

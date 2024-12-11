@@ -51,8 +51,8 @@ jobs:
     services:
       pocketbase:
         image: kevinganthy/pocketcv:latest
-        volumes:
-          - ./pocketbase:/pb
+        # volumes:
+        #   - ./pocketbase:/pb
         ports:
           - 8090:8090
           

@@ -55,11 +55,12 @@ jobs:
           - ./pocketbase/pb_data:/pb/pb_data
         ports:
           - 8090:8090
-        options: --user 1001:1001
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          clean: false
 
       - name: Setup Node
         uses: actions/setup-node@v4

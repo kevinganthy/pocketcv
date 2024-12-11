@@ -57,14 +57,12 @@ jobs:
           - 8090:8090
 
     steps:
-      - name: Fix permissions for pocketbase data
-        run: |
-          sudo chmod -R u+w ./pocketbase/pb_data || true
-          
       - name: Checkout
         uses: actions/checkout@v4
         with:
           clean: false
+          sparse-checkout: |
+            front
 
       - name: Setup Node
         uses: actions/setup-node@v4

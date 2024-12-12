@@ -18,7 +18,7 @@ COPY . .
 RUN touch init.sql
 EXPOSE ${POCKET_PORT}
 RUN go mod tidy
-CMD sh -c "go mod tidy && go run main.go serve --http=${POCKET_URL}:${POCKET_PORT}"
+CMD ["sh", "-c", "go run main.go serve --http=${POCKET_URL}:${POCKET_PORT}"]
 
 
 FROM dependencies AS back
@@ -32,4 +32,4 @@ WORKDIR /pb
 COPY --from=back /pb/pocketbase .
 EXPOSE ${POCKET_PORT}
 COPY pb_data pb_data
-CMD ["./pocketbase", "serve", "--http=${POCKET_URL}:${POCKET_PORT}"]
+CMD ["sh", "-c", "./pocketbase serve --http=${POCKET_URL}:${POCKET_PORT}"]

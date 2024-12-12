@@ -70,7 +70,7 @@ export default async function Home() {
         </div>
       </div>
 
-      <main className='flex flex-col gap-5 bg-white p-5 rounded w-full print:p-0 xl:max-w-page'>
+      <main className='flex flex-col gap-5 bg-white p-5 rounded w-full print:p-0 print:pt-8 xl:max-w-page'>
         {jobs.map((job) => (
           <JobComp key={job.id} job={job} />
         ))}

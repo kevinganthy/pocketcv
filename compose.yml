@@ -1,3 +1,4 @@
+---
 services:
   pocketbase:
     build:
@@ -14,7 +15,7 @@ services:
       interval: 5s
       timeout: 10s
       retries: 10
-    
+
   front:
     build:
       context: ./front
@@ -28,7 +29,7 @@ services:
       - app_network
     depends_on:
       pocketbase:
-          condition: service_healthy
+        condition: service_healthy
 
   caddy:
     image: caddy
@@ -47,8 +48,8 @@ services:
       - app_network
 
 volumes:
-  caddy_data:
-  caddy_config:
+  caddy_data: null
+  caddy_config: null
 
 networks:
-  app_network:
+  app_network: null

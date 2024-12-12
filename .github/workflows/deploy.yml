@@ -1,3 +1,4 @@
+---
 name: Build SSG and deploy
 
 on:

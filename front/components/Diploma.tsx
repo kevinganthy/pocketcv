@@ -8,7 +8,7 @@ const formatDate = (date: string): string => {
 
 export const DiplomaComp = ({ diploma }: { diploma: Diploma}) => {
     return <article className="grid grid-cols-2 place-content-around">
-        <h2 className="col-span-2 text-lg lg:text-xl font-medium print:text-base">{diploma.title}</h2>
+        <h2 className="col-span-2 text-lg font-medium print:text-base">{diploma.title}</h2>
         <div className="flex gap-1 text-gray-500">
             <time dateTime={formatDate(diploma.start)}>{formatDate(diploma.start)}</time>
             <span>à</span>

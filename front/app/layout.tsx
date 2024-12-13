@@ -1,5 +1,4 @@
 import '@/app/sytles/globals.css'
-import Script from 'next/script';
 
 interface Props {
   readonly children: React.ReactNode
@@ -8,7 +7,6 @@ interface Props {
 export default function RootLayout({ children }: Props) {
   return (
     <html lang="fr">
-      <Script src="https://unpkg.com/@phosphor-icons/web"/>
       <body className='bg-slate-800 w-vw print:bg-white flex'>
         {children}
       </body>

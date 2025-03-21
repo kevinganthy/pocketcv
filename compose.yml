@@ -21,6 +21,7 @@ services:
       context: ./front
     volumes:
       - ./front:/app
+      - /app/node_modules
     env_file:
       - .env
     ports:

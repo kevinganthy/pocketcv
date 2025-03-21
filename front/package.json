@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "next": "15.0.4",
-    "pocketbase": "^0.22.1",
+    "pocketbase": "latest",
     "qrcode": "^1.5.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"

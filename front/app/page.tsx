@@ -12,7 +12,7 @@ import type { Metadata } from 'next'
  
 
 async function getData () {
-  const pb = new PocketBase(process.env.API_URL ?? "http://localhost:8090");
+  const pb = new PocketBase(process.env.VITE_API_URL ?? "http://localhost:8090");
 
   const diplomas = await pb.collection('diplomas').getFullList<Diploma>({
     sort: '-start',
@@ -21,13 +21,13 @@ async function getData () {
     sort: '-start',
   });
   const user = await pb.collection('users').getFirstListItem<User>('email="kevin.ganthy@gmail.com"');
-
+  
   return { diplomas, jobs, user };
 }
 
 
 export async function generateMetadata(): Promise<Metadata> {
-  const pb = new PocketBase(process.env.API_URL ?? "http://localhost:8090");
+  const pb = new PocketBase(process.env.VITE_API_URL ?? "http://localhost:8090");
   const user = await pb.collection('users').getFirstListItem<User>('email="kevin.ganthy@gmail.com"');
  
   return {

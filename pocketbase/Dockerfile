@@ -31,6 +31,5 @@ FROM base
 WORKDIR /pb
 COPY --from=back /pb/pocketbase .
 EXPOSE ${POCKET_PORT}
-# COPY pb_data pb_data
 COPY init.sql .
 CMD ["sh", "-c", "./pocketbase serve --http=${POCKET_URL}:${POCKET_PORT}"]

@@ -25,6 +25,12 @@ Au choix :
 
 ## Going to production
 
+Penser à faire un dump de la base de données avant de push.
+
+````
+docker compose exec pocketbase sqlite3 /pb/pb_data/data.db .dump > ./pocketbase/init.sql
+````
+
 Le pipeline Github Action est configuré pour déployer automatiquement la version SSG du front-end. Pour cela, il fait les étapes suivantes :
 
 * Pocketbase

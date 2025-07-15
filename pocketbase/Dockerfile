@@ -13,7 +13,8 @@ FROM dependencies AS dev
 WORKDIR /pb
 RUN apk update \
     && apk upgrade \
-    && apk add --no-cache curl
+    && apk add --no-cache curl \
+    && apk add --no-cache sqlite
 COPY . .
 RUN touch init.sql
 EXPOSE ${POCKET_PORT}
